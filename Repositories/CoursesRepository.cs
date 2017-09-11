@@ -15,7 +15,6 @@ namespace CoursesApi.Repositories
         public CoursesRepository(AppDataContext db)
         {
             _db = db;
-
             _db.Students.Add(new Student{ SSN="1234567890", Name="Herp McDerpsson 1"});
             _db.Students.Add(new Student{ SSN="1234567891", Name="Herpina Derpy 1"});
             _db.Students.Add(new Student{ SSN="1234567892", Name="Herp McDerpsson 2"});

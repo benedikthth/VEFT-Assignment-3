@@ -76,21 +76,25 @@ namespace CoursesApi.Services
                 return null;
             }
 
-            //is student already in course?
-            if(_repo.IsStudentInCourse(newStudent.SSN, courseId)){
-                return null;
-            }
-
+            
             //make sure that course exist.
             CourseDetailsDTO course = _repo.GetCourseById(courseId);
             if(course == null){
                 return null;
             }
 
+
+            //is student already in course?
+            if(_repo.IsStudentInCourse(newStudent.SSN, courseId)){
+                return null;
+            }
+
+
             //do not allow more students than maxstudenst
             if(course.MaxStudents <= course.Students.Count){
                 return null;
             }
+
 
             //all is good. check if he is on waitng list and if so remove him.
             //Todo: does this need to be 2 different functions...?

@@ -58,13 +58,13 @@ namespace Api.Controllers
         [Route("", Name = "AddCourse")]
         public IActionResult AddCourse([FromBody] CourseViewModel course) 
         {
-            System.Console.WriteLine("hitler");
             
             if (course == null) { return BadRequest(); }
             if (!ModelState.IsValid) { return StatusCode(412); }
             var newCourse = _coursesService.AddCourse(course);
 
             return Ok(newCourse);
+
         }
 
         /// <summary>
@@ -157,10 +157,12 @@ namespace Api.Controllers
             if(newStudent == null) { return BadRequest(); }
             if(!ModelState.IsValid) { return StatusCode(412); }
 
+            var result = _coursesService.AddStudentToWaitList(courseId, newStudent);
             //TODO: REWORK REWORK REWORK!!!
-
-            // var res = _coursesService.AddStudentToWaitList(courseId, newStudent);
-            return NotFound();
+            if(result == null){
+                return StatusCode(412);
+            }
+            return Ok(result);
         }
 
         /// <summary>
