@@ -73,6 +73,7 @@ namespace CoursesApi.Services
             //check if student exists.
             StudentDTO student = _repo.GetStudentBySSn(newStudent.SSN);
             if(student == null){
+                System.Console.WriteLine("fuck");
                 return null;
             }
 
@@ -80,18 +81,21 @@ namespace CoursesApi.Services
             //make sure that course exist.
             CourseDetailsDTO course = _repo.GetCourseById(courseId);
             if(course == null){
+                System.Console.WriteLine("This");
                 return null;
             }
 
 
             //is student already in course?
             if(_repo.IsStudentInCourse(newStudent.SSN, courseId)){
+                System.Console.WriteLine("shit");
                 return null;
             }
 
 
             //do not allow more students than maxstudenst
             if(course.MaxStudents <= course.Students.Count){
+                System.Console.WriteLine("ballz");
                 return null;
             }
 
@@ -99,6 +103,7 @@ namespace CoursesApi.Services
             //all is good. check if he is on waitng list and if so remove him.
             //Todo: does this need to be 2 different functions...?
             if( _repo.IsStudentOnCrsWL(newStudent.SSN, courseId) ){
+                System.Console.WriteLine("love?");
                 _repo.RemoveStudentFromWaitingList(newStudent.SSN, courseId);
             }
 

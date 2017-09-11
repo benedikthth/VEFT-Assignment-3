@@ -119,13 +119,17 @@ namespace Api.Controllers
         [Route("{courseId:int}/students")]
         public IActionResult AddStudentToCourse(int courseId, [FromBody] StudentViewModel newStudent)
         {
-            if (newStudent == null) { return BadRequest(); }
+            System.Console.WriteLine("Talk to me!");
+            if (newStudent == null) { 
+                System.Console.WriteLine("1");
+                return BadRequest(); }
             if (!ModelState.IsValid) { return StatusCode(412); }
 
             var response = _coursesService.AddStudentToCourse(courseId, newStudent);
 
             if (response == null)
             {
+                System.Console.WriteLine("2");
                 return NotFound();
             }
 
