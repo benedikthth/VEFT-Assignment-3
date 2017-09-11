@@ -132,6 +132,37 @@ namespace Api.Controllers
         }
 
         /// <summary>
+        /// Gets a list of the students on the course waiting list.
+        /// </summary>
+        /// <param name="courseId">id of course to get the waiting list</param>
+        /// <returns>Ienumerable with list of students.</returns>
+        [HttpGet("{courseId:int}/waitinglist")]
+        public IActionResult GetStudentsOnWaitingList(int courseId){
+            CourseDetailsDTO dto = _coursesService.GetCourseById(courseId);
+            if(dto == null){
+                return NotFound();
+            }
+            return Ok(dto.StudentsInWaitingList);
+        }
+
+        [HttpPost("{courseId:int}/waitinglist")]
+        /// <summary>
+        /// Adds a student to the waiting list for course
+        /// </summary>
+        /// <param name="courseId">Id of the course to add student to</param>
+        /// <param name="newStudent">Student to add to course, from body.</param>
+        /// <returns>Ok if created, </returns>
+        public IActionResult addStudentToWaitingList(int courseId, [FromBody]  StudentViewModel newStudent){
+            if(newStudent == null) { return BadRequest(); }
+            if(!ModelState.IsValid) { return StatusCode(412); }
+
+            //TODO: REWORK REWORK REWORK!!!
+
+            // var res = _coursesService.AddStudentToWaitList(courseId, newStudent);
+            return NotFound();
+        }
+
+        /// <summary>
         /// Deletes a student from a course
         /// </summary>
         /// <param name="courseId">The id of the course</param>

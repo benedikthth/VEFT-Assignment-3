@@ -15,7 +15,7 @@ namespace CoursesApi.Repositories
         StudentDTO GetStudentBySSn(string ssn);
         StudentDTO AddStudentToCourse(int courseId, StudentViewModel newStudent);
         
-        bool AddStudentToWaitingList(string SSn, int courseId);
+        StudentDTO AddStudentToWaitingList(int courseId, StudentViewModel newStudent);
         bool IsStudentInCourse(string studentSSn, int courseId);
         bool IsStudentOnCrsWL(string studentSSn, int courseId);
 

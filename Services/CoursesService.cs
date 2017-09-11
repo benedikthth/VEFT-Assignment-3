@@ -10,18 +10,24 @@ namespace CoursesApi.Services
     {
         private ICoursesRepository _repo;
 
-        public bool AddStudentToWaitList(string SSn, int courseId){
-            StudentDTO stu = _repo.GetStudentBySSn(SSn);
-            if (stu == null){ return false; }
+        public StudentDTO AddStudentToWaitList(int courseId, StudentViewModel newStudent){
+            //student must be in system.
+            StudentDTO stu = _repo.GetStudentBySSn(newStudent.SSN);
+            if (stu == null){ return null; }
+            //course must exist.s
             CourseDetailsDTO crs = _repo.GetCourseById(courseId);
-            if(crs == null) { return false; }
-
-            //if student is on list already.
-            if(_repo.IsStudentOnCrsWL(stu.SSN, courseId)){
-                return false;
+            if(crs == null) { return null; }
+            //if student is on course already. do not add him to waiting list;
+            if(_repo.IsStudentInCourse(newStudent.SSN, courseId)){
+                return null;
             }
 
-            return _repo.AddStudentToWaitingList(stu.SSN, courseId);
+            //if student is on list already.
+            if(_repo.IsStudentOnCrsWL(newStudent.SSN, courseId)){
+                return null;
+            }
+
+            return _repo.AddStudentToWaitingList(courseId, newStudent);
 
 
         }

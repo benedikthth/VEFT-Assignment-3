@@ -7,6 +7,7 @@ namespace CoursesApi.Services
 {
     public interface ICoursesService
     {
+        StudentDTO AddStudentToWaitList(int courseId, StudentViewModel newStudent);
         IEnumerable<CoursesListItemDTO> GetCourses(string semester);
         CourseDetailsDTO GetCourseById(int courseId);
         IEnumerable<StudentDTO> GetStudentsByCourseId(int courseId);

@@ -80,6 +80,20 @@ namespace Api.Migrations
 
                     b.ToTable("Students");
                 });
+
+            modelBuilder.Entity("CoursesApi.Models.EntityModels.WaitingListRelation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CourseId");
+
+                    b.Property<string>("StudentSSN");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WaitingListRelations");
+                });
 #pragma warning restore 612, 618
         }
     }

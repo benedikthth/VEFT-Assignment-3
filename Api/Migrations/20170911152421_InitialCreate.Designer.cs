@@ -11,7 +11,7 @@ using System;
 namespace Api.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20170907112618_InitialCreate")]
+    [Migration("20170911152421_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,6 +80,20 @@ namespace Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("CoursesApi.Models.EntityModels.WaitingListRelation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CourseId");
+
+                    b.Property<string>("StudentSSN");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WaitingListRelations");
                 });
 #pragma warning restore 612, 618
         }

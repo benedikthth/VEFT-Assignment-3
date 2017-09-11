@@ -160,14 +160,26 @@ namespace CoursesApi.Repositories
 
         }
 
-        public bool AddStudentToWaitingList(string ssn, int courseId){
+        public StudentDTO AddStudentToWaitingList(int courseId, StudentViewModel newStudent){
+            
+            //check if student is in system.
+            StudentDTO stu = GetStudentBySSn(newStudent.SSN);
+            if(stu == null){return null; }
+
+            WaitingListRelation w = getWaitlistRelation(newStudent.SSN, courseId);
+            if(w != null){ return null; }
+            
             WaitingListRelation wlr = new WaitingListRelation{
-                StudentSSN = ssn,
+                StudentSSN = newStudent.SSN,
                 CourseId = courseId
             };
             _db.WaitingListRelations.Add(wlr);
             _db.SaveChanges();
-            return true;
+
+            return new StudentDTO{
+                Name = GetStudentBySSn(newStudent.SSN).Name,// what the fuck
+                SSN = newStudent.SSN
+            };
         }
         public bool RemoveStudentFromWaitingList(string SSn, int courseId){
             
