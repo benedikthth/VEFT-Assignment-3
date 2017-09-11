@@ -150,6 +150,7 @@ namespace CoursesApi.Repositories
             
             //do not permit an existing enrollment to be repeated.
             if(GetEnrollment(student.SSN, course.Id) != null){
+                System.Console.WriteLine("GetEnrollment !=");
                 return null;
             }
 
@@ -328,6 +329,7 @@ namespace CoursesApi.Repositories
                 Name = _db.CourseTemplates.FirstOrDefault(ct => ct.Template == newCourse.CourseID).CourseName,
                 StartDate = entity.StartDate,
                 EndDate = entity.EndDate,
+                MaxStudents = entity.MaxStudents,
                 Students = _db.Enrollments
                     .Where(e => e.CourseId == entity.Id)
                     .Join(_db.Students, enroll => enroll.StudentSSN, stud => stud.SSN, (e, s) => s)
