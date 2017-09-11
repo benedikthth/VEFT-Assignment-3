@@ -11,7 +11,7 @@ using System;
 namespace Api.Migrations
 {
     [DbContext(typeof(AppDataContext))]
-    [Migration("20170911152421_InitialCreate")]
+    [Migration("20170911212140_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -28,6 +28,7 @@ namespace CoursesApi.Repositories
             _db.Students.Add(new Student{ SSN="1234567899", Name="Herpina Derpy 5"});
 
             _db.CourseTemplates.Add(new CourseTemplate{Template="T-514-VEFT", CourseName="Vefthjonustur"});
+            _db.SaveChanges();
         }
 
         public IEnumerable<CoursesListItemDTO> GetCourses(string semsester)
