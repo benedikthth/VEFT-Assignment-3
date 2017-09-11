@@ -107,8 +107,8 @@ publish/
 .vscode/*
 
 
-Api/Migrations/
-*.db
+Api/Migrations/*
+Repositories/*.db
 
 # Publish Web Output
 *.Publish.xml
