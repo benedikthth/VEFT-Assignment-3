@@ -58,9 +58,10 @@ namespace Api.Controllers
         [Route("", Name = "AddCourse")]
         public IActionResult AddCourse([FromBody] CourseViewModel course) 
         {
+            System.Console.WriteLine("hitler");
+            
             if (course == null) { return BadRequest(); }
             if (!ModelState.IsValid) { return StatusCode(412); }
-
             var newCourse = _coursesService.AddCourse(course);
 
             return Ok(newCourse);

@@ -15,6 +15,19 @@ namespace CoursesApi.Repositories
         public CoursesRepository(AppDataContext db)
         {
             _db = db;
+
+            _db.Students.Add(new Student{ SSN="1234567890", Name="Herp McDerpsson 1"});
+            _db.Students.Add(new Student{ SSN="1234567891", Name="Herpina Derpy 1"});
+            _db.Students.Add(new Student{ SSN="1234567892", Name="Herp McDerpsson 2"});
+            _db.Students.Add(new Student{ SSN="1234567893", Name="Herpina Derpy 2"});
+            _db.Students.Add(new Student{ SSN="1234567894", Name="Herp McDerpsson 3"});
+            _db.Students.Add(new Student{ SSN="1234567895", Name="Herpina Derpy 3"});
+            _db.Students.Add(new Student{ SSN="1234567896", Name="Herp McDerpsson 4"});
+            _db.Students.Add(new Student{ SSN="1234567897", Name="Herpina Derpy 4"});
+            _db.Students.Add(new Student{ SSN="1234567898", Name="Herp McDerpsson 5"});
+            _db.Students.Add(new Student{ SSN="1234567899", Name="Herpina Derpy 5"});
+
+            _db.CourseTemplates.Add(new CourseTemplate{Template="T-514-VEFT", CourseName="Vefthjonustur"});
         }
 
         public IEnumerable<CoursesListItemDTO> GetCourses(string semsester)
