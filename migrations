@@ -1,0 +1,15 @@
+#!/bin/sh
+
+GREEN='\033[1;32m'
+NORMAL='\033[0m'
+
+rm -f Repositories/CoursesApi.db
+
+cd Api/
+
+echo "$GREEN Removing migrations $NORMAL "
+dotnet ef migrations remove
+echo "$GREEN Adding initial create $NORMAL "
+dotnet ef migrations add InitialCreate
+echo "$GREEN Updating database $NORMAL "
+dotnet ef database update
