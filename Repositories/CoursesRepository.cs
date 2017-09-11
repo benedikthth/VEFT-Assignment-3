@@ -15,6 +15,11 @@ namespace CoursesApi.Repositories
         public CoursesRepository(AppDataContext db)
         {
             _db = db;
+        }
+
+        public IEnumerable<CoursesListItemDTO> GetCourses(string semsester)
+        {
+            // TESTEER
             _db.Students.Add(new Student{ SSN="1234567890", Name="Herp McDerpsson 1"});
             _db.Students.Add(new Student{ SSN="1234567891", Name="Herpina Derpy 1"});
             _db.Students.Add(new Student{ SSN="1234567892", Name="Herp McDerpsson 2"});
@@ -28,10 +33,8 @@ namespace CoursesApi.Repositories
 
             _db.CourseTemplates.Add(new CourseTemplate{Template="T-514-VEFT", CourseName="Vefthjonustur"});
             _db.SaveChanges();
-        }
 
-        public IEnumerable<CoursesListItemDTO> GetCourses(string semsester)
-        {
+            // TEEEEESTEEEER
             var courses = (from c in _db.Courses
                            join t in _db.CourseTemplates on c.CourseTemplate equals t.Template 
                            where c.Semester == semsester
